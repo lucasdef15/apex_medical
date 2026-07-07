@@ -1,26 +1,240 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap");
+
+/* 2. Import único do Tailwind CSS v4 */
 @import "tailwindcss";
 
+/* 3. Variáveis nativas do CSS */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-sora: "Sora", sans-serif;
+  --font-code: "Source Code Pro", monospace;
+  --font-grotesk: "Space Grotesk", sans-serif;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* 4. Configuração de Tema (Substitui o tailwind.config.js > theme > extend) */
+@theme {
+  /* Cores Customizadas */
+  --color-color-1: #ac6aff;
+  --color-color-2: #ffc876;
+  --color-color-3: #ff776f;
+  --color-color-4: #7adb78;
+  --color-color-5: #858dff;
+  --color-color-6: #ff98e2;
+
+  --color-stroke-1: #26242c;
+
+  --color-n-1: #ffffff;
+  --color-n-2: #cac6dd;
+  --color-n-3: #ada8c3;
+  --color-n-4: #757185;
+  --color-n-5: #3f3a52;
+  --color-n-6: #252134;
+  --color-n-7: #15131d;
+  --color-n-8: #0e0c15;
+  --color-n-9: #474060;
+  --color-n-10: #43435c;
+  --color-n-11: #1b1b2e;
+  --color-n-12: #2e2a41;
+  --color-n-13: #6c7275;
+
+  /* Fontes (Combinando as variáveis locais com o fallback padrão do Tailwind) */
+  --font-sans:
+    var(--font-sora), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-code: var(--font-code);
+  --font-grotesk: var(--font-grotesk);
+
+  /* Letter Spacing */
+  --tracking-tagline: 0.15em;
+
+  /* Spacing (Escapando os pontos decimais obrigatórios para CSS puro) */
+  --spacing-0\.25: 0.0625rem;
+  --spacing-7\.5: 1.875rem;
+  --spacing-15: 3.75rem;
+
+  /* Opacity */
+  --opacity-15: 0.15;
+
+  /* Transitions */
+  --animate-transition-duration: 200ms;
+  --animate-transition-timing-function: linear;
+
+  /* Z-Index */
+  --z-index-1: 1;
+  --z-index-2: 2;
+  --z-index-3: 3;
+  --z-index-4: 4;
+  --z-index-5: 5;
+
+  /* Border Width */
+  --border-width-DEFAULT: 0.0625rem;
+
+  /* Background Images */
+  --background-image-radial-gradient: radial-gradient(var(--tw-gradient-stops));
+  --background-image-conic-gradient: conic-gradient(
+    from 225deg,
+    #ffc876,
+    #79fff7,
+    #9f53ff,
+    #ff98e2,
+    #ffc876
+  );
+  --background-image-benefit-card-1: url(assets/benefits/card-1.svg);
+  --background-image-benefit-card-2: url(assets/benefits/card-2.svg);
+  --background-image-benefit-card-3: url(assets/benefits/card-3.svg);
+  --background-image-benefit-card-4: url(assets/benefits/card-4.svg);
+  --background-image-benefit-card-5: url(assets/benefits/card-5.svg);
+  --background-image-benefit-card-6: url(assets/benefits/card-6.svg);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* 5. Estilos Globais / Base (Substitui o antigo @layer base) */
+* {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  background-color: var(--color-n-8);
+  color: var(--color-n-1);
+  font-size: var(--text-base);
 }
+
+/* 6. Componentes e Utilitários Customizados (Substitui o seu antigo plugin via Javascript) */
+@utility container {
+  max-width: 77.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-5);
+  padding-right: var(--spacing-5);
+
+  @variant md {
+    padding-left: var(--spacing-10);
+    padding-right: var(--spacing-10);
+  }
+  @variant lg {
+    padding-left: var(--spacing-15);
+    padding-right: var(--spacing-15);
+  }
+  @variant xl {
+    max-width: 87.5rem;
+  }
+}
+
+@utility h1 {
+  font-weight: var(--font-weight-semibold);
+  font-size: 2.5rem;
+  line-height: 3.25rem;
+  @variant md {
+    font-size: 2.75rem;
+    line-height: 3.75rem;
+  }
+  @variant lg {
+    font-size: 3.25rem;
+    line-height: 4.0625rem;
+  }
+  @variant xl {
+    font-size: 3.75rem;
+    line-height: 4.5rem;
+  }
+}
+
+@utility h2 {
+  font-size: 1.75rem;
+  line-height: 2.5rem;
+  @variant md {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+  @variant lg {
+    font-size: 2.5rem;
+    line-height: 3.5rem;
+  }
+  @variant xl {
+    font-size: 3rem;
+    line-height: var(--leading-tight);
+  }
+}
+
+@utility h3 {
+  font-size: 2rem;
+  line-height: var(--leading-normal);
+  @variant md {
+    font-size: 2.5rem;
+  }
+}
+
+@utility h4 {
+  font-size: 2rem;
+  line-height: var(--leading-normal);
+}
+
+@utility h5 {
+  font-size: var(--text-2xl);
+  line-height: var(--leading-normal);
+}
+
+@utility h6 {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--text-lg);
+  line-height: 2rem;
+}
+
+@utility body-1 {
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  @variant md {
+    font-size: 1rem;
+    line-height: 1.75rem;
+  }
+  @variant lg {
+    font-size: 1.25rem;
+    line-height: 2rem;
+  }
+}
+
+@utility body-2 {
+  font-weight: var(--font-weight-light);
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  @variant md {
+    font-size: var(--text-base);
+  }
+}
+
+@utility caption {
+  font-size: var(--text-sm);
+}
+
+@utility tagline {
+  font-family: var(--font-grotesk);
+  font-weight: var(--font-weight-light);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-tagline);
+  text-transform: uppercase;
+}
+
+@utility quote {
+  font-family: var(--font-code);
+  font-size: var(--text-lg);
+  line-height: var(--leading-normal);
+}
+
+@utility button {
+  font-family: var(--font-code);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
+@utility tap-highlight-color {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* Nota sobre as classes .rotate-45 até .-rotate-360:
+  Elas não foram adicionadas aqui porque o compilador do Tailwind v4 gera 
+  dinamicamente e nativamente qualquer rotação arbitrária que você chamar no HTML.
+  Exemplo: `rotate-45`, `rotate-135`, `-rotate-270` vão funcionar sem precisar de código aqui!
+*/
