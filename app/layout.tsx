@@ -31,7 +31,7 @@ export default function RootLayout({
       style={{ colorScheme: "dark" }}
     >
       <body className="h-full antialiased">
-        {/* <Header /> */}
+        <Header />
         <main className="min-h-screen">{children}</main>
         <ButtonGradient />
       </body>

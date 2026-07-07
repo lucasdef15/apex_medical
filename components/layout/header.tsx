@@ -1,75 +1,46 @@
+"use client";
 import Link from "next/link";
+import Image from "next/image";
+import { navigation } from "@/constants";
+import { useHash } from "@/hooks/useHash";
 
 export default function Header() {
+  const hash = useHash();
+
   return (
-    <header className="w-[90vw] mx-auto rounded-full border-b border-zinc-100 bg-white/80 backdrop-blur-md sticky top-5 z-50 px-4 py-2">
-      <nav className="w-full mx-auto flex items-center justify-between min-div">
-        <div className="flex items-center gap-2">
-          <Link
-            href="/"
-            className="text-xl font-bold tracking-tight text-zinc-900"
-          >
-            Apex<span className="text-blue-600">Medical</span>
-          </Link>
-        </div>
+    <header className="fixed top-0 z-50 bg-n-8/90 backdrop-blur-sm border-b border-n-6 lg:bg-n-8/90 lg:backdrop-blur-sm ">
+      <div className="flex items-center px-5 lg:px-7.5 xl:px-10 max-lg:py-4">
+        <Link href="#hero" className="block w-[12rem] xl:mr-8">
+          <Image
+            src="/assets/brainwave.svg"
+            width={190}
+            height={40}
+            alt="Apex Medical"
+          />
+        </Link>
+        <nav className="hidden fixed top-[5rem] left-0 right-0 bottom-0 bg-n-8 lg:static lg:flex lg:mx-auto lg:bg-transparent">
+          <div className="relative z-2 flex flex-col items-center justify-center m-auto lg:flex-row">
+            {navigation.map((item) => {
+              const baseClasses =
+                "block relative px-6 py-6 md:py-8 xl:px-12 font-code text-2xl lg:text-xs lg:font-semibold lg:leading-5 uppercase transition-colors";
+              const responsiveClasses = `lg:-mr-0.25 ${item.onlyMobile ? "lg:hidden" : ""}`;
+              const hoverClasses = "hover:text-color-1 lg:hover:text-n-1";
+              const activeClasses =
+                item.url === hash ? "z-2 lg:text-n-1" : "lg:text-n-1/50";
 
-        <ul className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-600">
-          <li>
-            <Link href="/" className="transition-colors hover:text-blue-600">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/sobre"
-              className="transition-colors hover:text-blue-600"
-            >
-              Services
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/servicos"
-              className="transition-colors hover:text-blue-600"
-            >
-              Portfolio
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/contato"
-              className="transition-colors hover:text-blue-600"
-            >
-              Process
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/contato"
-              className="transition-colors hover:text-blue-600"
-            >
-              FAQ
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/contato"
-              className="transition-colors hover:text-blue-600"
-            >
-              Contact
-            </Link>
-          </li>
-        </ul>
-
-        <div className="flex items-center gap-4">
-          <Link
-            href="/agendar"
-            className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
-          >
-            Agendar Consulta
-          </Link>
-        </div>
-      </nav>
+              return (
+                <Link
+                  key={item.id}
+                  href={item.url}
+                  className={`${baseClasses} ${responsiveClasses} ${hoverClasses} ${activeClasses}`}
+                >
+                  {item.title}
+                </Link>
+              );
+            })}
+          </div>
+        </nav>
+      </div>
     </header>
   );
 }
