@@ -3,12 +3,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { navigation } from "@/constants";
 import { useHash } from "@/hooks/useHash";
+import Button from "../ui/button";
 
 export default function Header() {
   const hash = useHash();
 
   return (
-    <header className="fixed top-0 z-50 bg-n-8/90 backdrop-blur-sm border-b border-n-6 lg:bg-n-8/90 lg:backdrop-blur-sm ">
+    <header className="fixed top-0 left-0 w-full z-50 bg-n-8/90 backdrop-blur-sm border-b border-n-6 lg:bg-n-8/90 lg:backdrop-blur-sm ">
       <div className="flex items-center px-5 lg:px-7.5 xl:px-10 max-lg:py-4">
         <Link href="#hero" className="block w-[12rem] xl:mr-8">
           <Image
@@ -40,6 +41,16 @@ export default function Header() {
             })}
           </div>
         </nav>
+
+        <Link
+          href={"#signup"}
+          className="button hidden mr-8 text-n-1/50 transition-colors hover:text-n-1 lg:block"
+        >
+          New account
+        </Link>
+        <Button className="hidden lg:flex " href={"#login"}>
+          Sign in
+        </Button>
       </div>
     </header>
   );
