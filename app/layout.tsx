@@ -2,6 +2,7 @@ import Header from "@/components/layout/header";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import ButtonGradient from "../components/svg/ButtonGradient";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,7 @@ export default function RootLayout({
       <body className="h-full antialiased">
         <Header />
         <main className="min-h-screen">{children}</main>
+        <ButtonGradient />
       </body>
     </html>
   );
