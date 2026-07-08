@@ -1,5 +1,6 @@
+"use client";
 import Image from "next/image";
-import background from "../assets/background.jpg";
+import { background } from "../../public/assets";
 
 export const Rings: React.FC = () => {
   return (
@@ -29,7 +30,7 @@ export const BackgroundCircles: React.FC = () => {
   );
 };
 
-export const HambugerMenu: React.FC = () => {
+export const HamburgerMenu: React.FC = () => {
   return (
     <div className="absolute inset-0 pointer-events-none lg:hidden">
       <div className="absolute inset-0 opacity-[.03]">

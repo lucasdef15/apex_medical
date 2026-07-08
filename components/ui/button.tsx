@@ -1,5 +1,5 @@
-import React from "react";
 import Link from "next/link";
+import React from "react";
 import ButtonSvg from "../svg/ButtonSvg";
 
 interface ButtonProps {
@@ -10,7 +10,6 @@ interface ButtonProps {
   px?: string;
   white?: boolean;
 }
-
 export default function Button({
   children,
   className = "",
@@ -19,23 +18,27 @@ export default function Button({
   white = false,
   px,
 }: ButtonProps) {
-  const baseClasses = `relative inline-flex items-center justify-center h-11 transition-colors hover:text-color-1 ${px || "px-7"} ${white ? "text-n-8" : "text-n-1"} ${className}`;
+  const baseClasses = `button relative items-center justify-center h-11 transition-colors hover:text-color-1 ${px || "px-7"} ${white ? "text-n-8" : "text-n-1"}`;
 
   const spanClasses = "relative z-10";
 
-  if (href) {
+  const renderButton = () => {
     return (
-      <Link href={href} className={baseClasses}>
+      <button className={`${baseClasses} ${className}`} onClick={onClick}>
+        <span className={spanClasses}>{children}</span>
+        <ButtonSvg white={white} />
+      </button>
+    );
+  };
+
+  const renderLink = () => {
+    return (
+      <Link className={`${baseClasses} ${className}`} href={href!}>
         <span className={spanClasses}>{children}</span>
         <ButtonSvg white={white} />
       </Link>
     );
-  }
+  };
 
-  return (
-    <button className={baseClasses} onClick={onClick}>
-      <span className={spanClasses}>{children}</span>
-      <ButtonSvg white={white} />
-    </button>
-  );
+  return href ? renderLink() : renderButton();
 }

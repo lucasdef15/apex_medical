@@ -12,13 +12,42 @@
   "prettier.jsxSingleQuote": false,
   "prettier.trailingComma": "es5",
   "prettier.arrowParens": "always",
+
+  // --- VALIDAÇÕES DE ERRO (Ativa o TypeScript sem travar) ---
+  // Garante que a validação nativa de JavaScript/TypeScript está ligada
+  "js/ts.validate.enabled": true,
+  
+  // Habilita o VS Code a rodar checagem de tipos em arquivos JS comuns se necessário
+  "js/ts.implicitProjectConfig.checkJs": true,
+
+  // --- PRESERVAR O INTELLISENSE E O TAILWIND ---
+  // Evita conflitos de autocomplete dando prioridade para as sugestões rápidas
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "off",
+    "strings": "on"
+  },
+  // Faz o VS Code processar o autocomplete do Tailwind mais rápido dentro de strings de classes
+  "tailwindCSS.emmetCompletions": true,
+  "editor.twMerge": true,
+
+  // --- CONFIGURAÇÕES POR LINGUAGEM (Isolamento Seguro) ---
   "[javascriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.suggestSelection": "first"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.suggestSelection": "first"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.suggestSelection": "first"
   },
   "[css]": {
     "editor.defaultFormatter": "vscode.css-language-features"
   },
   "[svg]": {
-    "editor.defaultFormatter": "jock.svg"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
